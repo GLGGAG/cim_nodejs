@@ -1,0 +1,40 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ * https://www.npmjs.com/package/stomp-client
+ */
+var Stomp = require('stomp-client');
+var config=require('../../config/activeMQConfig');
+var  timSend=require("./timServer");
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+logger.debug("currentTime=%s",new Date());
+
+/**
+ * 监听的队列
+ * @type {string}
+ */
+var messageSendQueue = '/queue/sendMessage';
+var relationManageQueue='/queue/relationManage';
+var client = new Stomp(config);
+client.disconnect(function (err) {
+  console.log("ActiveMqConnetionError======%s,currentModule====%s",err,__filename);
+});
+/**
+ * MQ信息发送过来是直接转发至TIM端，消息体已在MQ发送方组装完毕
+ */
+client.connect(function(sessionId) {
+  client.subscribe(messageSendQueue, function(body, headers) {
+    /*console.log(headers);
+    console.log('From MQ:', body);*/
+    logger.info("FromActiveMqBodyMessage=====%s ,currentTime=====%s",body,new Date());
+   // timSend(body);
+  });
+  client.subscribe(relationManageQueue, function(body, headers) {
+    /*console.log(headers);
+     console.log('From MQ:', body);*/
+    logger.info("FromActiveMqBodyMessage=====%s ,currentTime=====%s",body,new Date());
+    // timSend(body);
+  });
+
+  //client.publish(destination, 'Hello World!');
+});

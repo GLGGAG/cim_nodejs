@@ -1,0 +1,20 @@
+//Created by GLGGAG on 2017/3/15.
+var Article = require('../models/article');
+var connet=require('../dao/dataSource');
+var redisConnect=require('../dao/redisSource');
+var sendMes=require('../server/timServer');
+
+//登录主页的调用的方法
+exports.home=function(req, res){
+  var articles = [new Article(), new Article()];
+  /**
+   * 处理代码逻辑，获取参数，cookie,session,及调用server层进行CRUD
+   */
+  //connet.executeUpdate("update userbuyer set nickName=? where id=?",['领导',40]);
+  //redisConnect.hset("dushiecs","xiaopihai",11111);
+  //sendMes();
+  res.render('index', {
+    title: 'Generator-Express MVC',
+    articles: articles
+  });
+};

@@ -1,0 +1,8 @@
+module.exports = {
+  sdkAppid: '1400026965',
+  identifier: 'admin1',
+  accountType:  '11385',
+  version: '201512300000',
+  privateKey : 'private.pem',
+  expireAfter: 180 * 24 * 3600,
+};

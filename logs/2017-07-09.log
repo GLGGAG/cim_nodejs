@@ -1,0 +1,60 @@
+[2017-07-09 13:10:29.769] [ERROR] record - TypeError: Cannot read property 'message' of undefined
+    at ChildProcess.<anonymous> (G:\webstormwork\cim-nodejs\app\server\activeMqServer.js:26:34)
+    at emitNone (events.js:86:13)
+    at ChildProcess.emit (events.js:185:7)
+    at finish (internal/child_process.js:711:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-07-09 13:10:29.778] [INFO] record - 子进程已退出：1
+[2017-07-09 13:10:30.615] [ERROR] record - { Error: connect ECONNREFUSED 127.0.0.1:61613
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1087:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 61613 }
+[2017-07-09 13:11:46.394] [ERROR] record - TypeError: Cannot read property 'message' of undefined
+    at ChildProcess.<anonymous> (G:\webstormwork\cim-nodejs\app\server\activeMqServer.js:26:34)
+    at emitNone (events.js:86:13)
+    at ChildProcess.emit (events.js:185:7)
+    at finish (internal/child_process.js:711:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-07-09 13:11:46.405] [INFO] record - 子进程已退出：1
+[2017-07-09 13:11:47.261] [ERROR] record - { Error: connect ECONNREFUSED 127.0.0.1:61613
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1087:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 61613 }
+[2017-07-09 13:33:37.971] [ERROR] record - TypeError: Cannot read property 'message' of undefined
+    at ChildProcess.<anonymous> (G:\webstormwork\cim-nodejs\app\server\activeMqServer.js:26:34)
+    at emitNone (events.js:86:13)
+    at ChildProcess.emit (events.js:185:7)
+    at finish (internal/child_process.js:711:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-07-09 13:33:37.981] [INFO] record - 子进程已退出：1
+[2017-07-09 13:33:38.839] [ERROR] record - { Error: connect ECONNREFUSED 127.0.0.1:61613
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1087:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 61613 }
+[2017-07-09 13:34:02.334] [ERROR] record - { Error: connect ECONNREFUSED 127.0.0.1:61613
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1087:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 61613 }

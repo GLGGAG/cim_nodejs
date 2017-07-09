@@ -1,0 +1,17 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ * 添加好友模板
+ */
+module.exports ={
+  "From_Account":"111111",
+  "AddFriendItem":
+    [
+      {
+        "To_Account":"111111",
+        "GroupName":"患者",
+        "AddWording":"您好"
+      }
+    ],
+  "AddType":"Add_Type_Both",
+  "ForceAddFlags":1
+}

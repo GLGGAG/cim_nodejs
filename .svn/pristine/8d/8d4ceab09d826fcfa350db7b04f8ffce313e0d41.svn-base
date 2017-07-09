@@ -1,0 +1,145 @@
+var express = require('express');
+var glob = require('glob');
+
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var compress = require('compression');
+var methodOverride = require('method-override');
+var session=require('express-session');
+var dushiWebRouter=require('../app/router/webRouter');
+var log=require('./log');
+
+
+
+/**
+ * NodeJs核心配置
+ * @param app
+ * @param config
+ * @returns {*}
+ */
+
+module.exports = function(app, config) {
+  /**
+   * NodeJs中，只支持单线程，面对大量密集计算时无力
+   * 为了弥补此弱点
+   * NodeJs提供child_process模块与cluster模块
+   * child_process模块用于实现在应用程序中开启多个子进程并在各个子进程中运行不同的
+   * 命令或执行NodeJs模块文件，可执行文件的处理。
+   * cluster模块用于实现在应用程序中开启多个子进程，并在每个子进程中运行一个应用程序副本的处理
+   *
+   * process对象代表整个NodeJs应用程序，这是一个全局对象
+   * env：当前应用程序运行的操作系统的环境信息
+   */
+    //将当前环境设置为开发环境，当部署项目时设置为生产环境
+  var env = process.env.NODE_ENV || 'development';
+  app.locals.ENV = env;
+  app.locals.ENV_DEVELOPMENT = env == 'development';
+
+  /**
+   * 将视图导向app/views路径的下，使用ejs模板引擎渲染
+   */
+  app.set('views', config.root + '/app/views');
+  app.set('view engine', 'ejs');
+
+  // app.use(favicon(config.root + '/public/img/favicon.ico'));
+  /**
+   * 使用日记中间件，fromat属性值使用dev
+   *记录method，url，status，response-time ms，request等信息
+   */
+  log.use(app);
+  /**
+   * bodeParser中间件用于解析顾客段请求的body中的内容，内部使用JSON编码处理
+   * url编码处理一级对于文件的上传处理
+   */
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  /**
+   * cookieParser中间件用于获取Web浏览器发送的cookie内容
+   * 使用cookie中间件后，代表客户端请求的http.IncomingMessage对象就有cookie属性
+   * 该属性值为一个对象数组，里面春芳所有Web浏览器发送的cookie
+   * req.cookies();
+   */
+  app.use(cookieParser());
+
+  /**
+   * session中间件用于保存用户数据，sesssion中的数据时经过加密默认保存在cookie中
+   * 因此如果使用session中间件之前必须使用cookieParse中间件
+   * 也可自定义第三方存储，如redis  mongodb等
+   */
+  /*app.use(session({
+   secret: 'custom',//盐,必须
+   store: new RedisStore({
+   port: 6379,
+   host: '127.0.0.1'
+   }),
+   resave: true,
+   saveUninitialized: true
+   }));*/
+  app.use(session({
+    secret: 'cim-dushi',//都市加密盐
+  }));
+
+  /**
+   *Zlib模块，用于创建对数据进行压缩和处理的对象方法
+   * 使用Gizp压缩
+   */
+  app.use(compress());
+
+  /**
+   * static中间件可以使客户端直接访问网络站中的所有静态文件
+   * public路径下的文件都可以直接访问
+   */
+  app.use(express.static(config.root + '/public'));
+
+  /**
+   * methodOverride中间件必须结合bodyParser中间件一起使用，该中间件为bodyParser提供
+   * 伪HTTP方法支持
+   */
+  app.use(methodOverride());
+
+  /**
+   * 将应用程序的路由交给dushiwebrouter模块
+   */
+  app.use('/', dushiWebRouter);
+
+  /**
+   * 此处  require(object1)(object2)写法是将object1交由object2控制
+   */
+  /*  var controllers = glob.sync(config.root + '/app/controllers/!*.js');
+  controllers.forEach(function (controller) {
+    require(controller)(app);
+  });*/
+
+  app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
+
+  if(app.get('env') === 'development'){
+    app.use(function (err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: err,
+        title: 'error'
+      });
+    });
+  }
+
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: {},
+        title: 'error'
+      });
+  });
+
+  return app;
+};

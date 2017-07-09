@@ -1,0 +1,25 @@
+/**
+ *
+管理员: admin1, admin2
+node TimRestApiGear.js openim sendmsg admin test1 "hi,test1"
+
+sign生成工具路径: D:\edsDoc\顾客端\TLS_TOOLS_20151230\20151230\tls_sig_api-windows-64\tools>
+
+sign generate cli:  tls_licence_tools.exe gen private_key sig 1400026539 test1
+
+users:
+admin1/123456/eJxNjdFugjAUht*FW5eNghVd4oV0bIPRMYIu0Zum0hbPFgGhI6jZuw*ILp67c77zf--ZWIbJfS2*GS9LEMajgcamaVqT2QQbdwOUbQmVZFxpWfUcY2x1Lxc6xBjXzK769PWsYS8H2bQTYftfBkLmGhQMKi72kKOrKE2Ln1wzfSzljaiGrNuoFxP-*UmNOVKH4CC80zRez0YucXT0AH4zoip7S50Ifbgv7eYVL2Dhh*vPVUhpsMVVdCRLj8QQN1-bIKG7RBQ799S*B5vMITSbzy9ljaxqKPKu0DIRRpZt9mP8-gG3flci
+test1/123456/eJxNjV1rgzAUhv9LrscWE1N1sAtpuiFtkHY6Zm*CxGhjqUqMtXbsv0-Fws7deT*e9wdEu8-nNjvztGlUBl6BZUMI0cpbEfA0m-LWKC15mhupJ58QgsbI4s41nhqO9dR*yEZd5AxzRxDB2Ft0lcnKqFzNKCNbYz04QtRdZbgZGvmP06pi-NgmXgd7umNFUG*i4a5y2nexU78knYbUot3Vc0OSXOKt-U72377TB8XH1ncRGpLyiKMQn4SwTz7rv9zykJWOZrfz3Tv4jIo47N*WsavUraqrcRBBi1gIw*nA7x*g0VdH
+testq/12345678/eJxNjV1PgzAUhv9LbzVbKTA3Ey-IGIkGosIIczdNsx66RtcBPSND438XCEs8d*f9eN4fso2zmZWfXFSVluSROB6llC1WC5-cjyZcK90AFyVCM-i*77M*MrljjQvkbjO0bzLqE4ywZQ-ymONNupZgUJd6RCFYrG*cw*F8Mcixq*Afx2rVf8kmXz8HoRQphWNdisTQtvtIs3mC2Vtd7CxV9usOFF7diwjjItCbQLmhiqL3PYv2edbJls5ziBL2DWZdqIdXmXrLlzRe7U5d8DSNtdBYfTb9IKOO7zCXDkd*-wAE-1f4
+
+ */
+
+module.exports = {
+    sdkAppid: '1400026965',
+    identifier: 'admin1',
+    accountType:  '11385',
+    version: '201512300000',
+    privateKey : 'private_key',
+    expireAfter: 30 * 24 * 3600,
+};
+

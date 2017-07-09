@@ -1,0 +1,53 @@
+/**
+ * Created by GLGGAG on 2017/3/29.
+ * 此进程用于tim通信
+ */
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+var addFriSend=require('../server/timAddFriendsServer');
+var messageSend=require('../server/timSendMessageServer');
+var singleAccSend=require('../server/timSingleInputAccountServer');
+var delFriSend=require('../server/timDelFriendsServer');
+//var impFriSend=require('../server/timImportFriendsServer');
+var domain=require("domain");
+var dom=domain.create();
+
+
+process.on("message",function (data) {
+  logger.info("从master收到的消息：==============="+data);
+  switch (data[1]){
+    case "/queue/timSendMessage":
+      dom.run(function () {
+        messageSend.send(data[0]);
+      });
+      break;
+    case "/queue/timRelationManage":
+      dom.run(function () {
+        singleAccSend.send(data[0]);
+      });
+      break;
+    case "/queue/timAddFriends":
+      dom.run(function () {
+        addFriSend.send(data[0]);
+      });
+      break;
+  /*  case "/queue/timImpFriends":
+      dom.run(function () {
+        impFriSend.send(data[0]);
+      });
+      break;*/
+    default :
+      dom.run(function () {
+        delFriSend.send(data[0]);
+      });
+      break;
+  };
+ /* dom.run(function () {
+    messageSend.send(data);
+  });*/
+})
+dom.on("error",function (err) {
+  logger.error("domain捕获到的异常：%s",err.message);
+});
+
+

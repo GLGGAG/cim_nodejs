@@ -1,0 +1,83 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ * 消息发送服务
+ */
+
+var api=require('./timServerInit');
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+
+/**
+ * 当发送失败时重试三次
+ * @type {number}
+ */
+var sendFailTryAgainCount=0;
+function tim() {
+}
+tim.prototype.send=function (body) {
+  api.request("openim", "sendmsg", body,function (err,data) {
+     if (err){
+       logger.info("timResponseMessageError:%s", err);
+     }
+    console.log(sendFailTryAgainCount+"-------------------s");
+    sendFailTryAgainCount++;
+    logger.info("timResponseMessageSuccessStatus:%s,ErrorCode:%s,ErrorInfo:%s,count:%s", data.ActionStatus, data.ErrorCode, data.ErrorInfo,sendFailTryAgainCount);
+    if(data.ActionStatus!="Ok"&& data.ErrorInfo!=0&&sendFailTryAgainCount<3){
+          new tim().send();
+    }
+  })
+}
+tim.prototype.restoreCount=function () {
+    sendFailTryAgainCount=0;
+}
+tim.prototype.sendMes=function (body) {
+  this.send(body);
+  this.restoreCount();
+}
+
+/**
+ * 重试三次
+ */
+/*var tim={
+  send:function () {
+    var sendFailTryAgainCount=0;
+    api.request("openim", "sendmsg", reqBody,
+      function (err, data) {
+        if (err) {
+          logger.debug("timResponseMessageError:%s", err);
+        }
+        logger.info("FristTimeResponseMessageSuccessStatus:%s----ErrorInfo:%s", data.ActionStatus, data.ErrorCode, data.ErrorInfo);
+        if(data.ActionStatus!="Ok"&& data.ErrorInfo!=0){
+          sendFailTryAgainCount++;
+          if (sendFailTryAgainCount < 3) {
+            api.request("openim", "sendmsg", reqBody,function (err,data) {
+               if (err) {
+                 logger.debug("SecondTimResponseMessageError:%s", err);
+               }
+              logger.info("SecondTimeResponseMessageSuccessStatus:%s----ErrorInfo:%s", data.ActionStatus, data.ErrorCode, data.ErrorInfo);
+             })
+            if(data.ActionStatus!="Ok"&& data.ErrorInfo!=0){
+              sendFailTryAgainCount++;
+              if (sendFailTryAgainCount < 3) {
+                api.request("openim", "sendmsg", reqBody,function (err,data) {
+                  if (err) {
+                    logger.debug("thirdTimResponseMessageError:%s", err);
+                  }
+                  logger.info("thirdTimeResponseMessageSuccessStatus:%s----ErrorInfo:%s", data.ActionStatus, data.ErrorCode, data.ErrorInfo);
+                })
+              }
+            }
+          }
+
+        }
+      })
+  }
+};*/
+module.exports=tim;
+
+
+
+
+
+
+

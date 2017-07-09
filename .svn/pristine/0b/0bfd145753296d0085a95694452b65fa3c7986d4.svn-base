@@ -1,0 +1,19 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ */
+module.exports ={
+    "SyncOtherMachine": 1, //消息同步至发送方
+    "From_Account": "test1",
+    "To_Account": "testq",
+    "MsgRandom": Math.floor(Math.random() * (1000000  + 1) + 0),
+    //"MsgTimeStamp":(Math.floor(Date.now() / 1000)).toString(),
+    "MsgBody": [
+    {
+      "MsgType": "TIMFaceElem",
+      "MsgContent": {
+        "Index":13,
+        "Data": "[龇牙]"
+      }
+    }
+   ]
+}

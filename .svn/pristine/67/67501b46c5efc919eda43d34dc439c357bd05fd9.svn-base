@@ -1,0 +1,34 @@
+var beachServer=require('../server/timBeachInputAccountServer');
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+
+module.exports=function (data) {
+  if(data==''||data==undefined){
+    return;
+  }
+  var arr=new Array();
+  var  length=10;
+  var  balance=length%10;
+  for(var i=0;i<length;i++){
+    arr.push(data[i].userno.toString());
+    if(i<length){
+      if (i%10==0){
+        var addCount={
+          "Accounts":arr
+        }
+        var jsonArr= JSON.stringify(addCount);
+        logger.info("添加用户:%s",jsonArr);
+         new beachServer().sendMes(jsonArr);
+        arr=[];
+      }
+    }
+  }
+  var addCount={
+    "Accounts":arr
+  }
+  var jsonArr= JSON.stringify(addCount);
+  logger.info("添加用户:%s",jsonArr);
+  new beachServer().sendMes(jsonArr);
+  arr=[];
+}
+

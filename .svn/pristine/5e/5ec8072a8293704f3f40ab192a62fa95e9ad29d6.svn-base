@@ -1,0 +1,148 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ */
+var options=require('../../config/mysqlConfig');
+var mysql=require('mysql');
+var pool=mysql.createPool(options);
+
+
+var connect= {
+  /**
+   * @param sqlString  需要执行的sql，包含占位符
+   * @param value  查询参数
+   */
+  executeQuery: function (sqlString,value) {
+    pool.getConnection(function (err, connection) {
+      if (err) {
+        console.log("建立连接数据库失败%s", err);
+      } else {
+        connection.query(sqlString, value, function (err, results) {
+          if (err) {
+            console.log("查询失败%s", err);
+          } else {
+            console.log("查询结果为：" + results[0].userNo);
+            return results;
+          }
+        });
+      }
+      connection.end();
+    });
+  },
+
+  /**
+   * 插入，事务
+   * @param sqlString
+   * @param value
+   */
+  executeInsert:function (sqlString,value) {
+    pool.getConnection(function (err,connection) {
+      if (err) {
+        console.log("建立连接数据库失败%s", err);
+      } else {
+        connection.beginTransaction(function (err) {
+          if (err) {
+            throw err;
+          }
+          connection.query(sqlString, value, function (error, results, fields) {
+            if (error) {
+              return connection.rollback(function () {
+                throw error;
+              });
+            }
+            connection.commit(function (err) {
+              if (err) {
+                return connection.rollback(function () {
+                  throw err;
+                });
+              }
+              console.log('success!');
+            });
+          });
+        });
+      };
+    connection.end();
+  });
+  },
+
+  /**
+   * 删 事务
+   * @param sqlString
+   * @param value
+   */
+  executeDelete:function (sqlString,value) {
+    pool.getConnection(function (err,connection) {
+      if(err){
+        console.log("建立连接数据库失败%s",err);
+      }else {
+        connection.beginTransaction(function (err) {
+          if (err) {
+            throw err;
+          }
+          connection.query(sqlString, value, function (error, results, fields) {
+            if (error) {
+              return connection.rollback(function () {
+                throw error;
+              });
+            }
+            connection.commit(function (err) {
+              if (err) {
+                return connection.rollback(function () {
+                  throw err;
+                });
+              }
+              console.log('success!');
+            });
+          });
+        });
+      };
+      connection.end();
+    });
+  },
+
+
+  /**
+   * 改 事务
+   * @param sqlString
+   * @param value
+   */
+  executeUpdate:function (sqlString,value) {
+    pool.getConnection(function (err,connection) {
+      if(err){
+        console.log("建立连接失败%s",err);
+      }else {
+        connection.beginTransaction(function (err) {
+          if (err) {
+            throw err;
+          }
+          connection.query(sqlString, value, function (error, results, fields) {
+            if (error) {
+              return connection.rollback(function () {
+                throw error;
+              });
+            }
+            connection.commit(function (err) {
+              if (err) {
+                return connection.rollback(function () {
+                  throw err;
+                });
+              }
+              console.log('success!');
+            });
+          });
+        });
+      };
+      connection.end();
+    });
+  }
+
+};
+
+module.exports=connect;
+
+
+
+
+
+
+
+

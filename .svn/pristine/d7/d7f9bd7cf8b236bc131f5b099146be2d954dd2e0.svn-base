@@ -1,0 +1,56 @@
+/**
+ * Created by GLGGAG on 2017/3/22.
+ *
+ *
+ * 单一导入用户，用时间作为记录点
+ */
+var log4js = require("../../config/log.js");
+var api=require('./timServerInit');
+var logger = log4js.logger;
+var addFriSend=require("./timAddFriendsServer");
+var initAddFriBody=require('../../config/timAddFriConfig');
+
+/**
+ * 当发送失败时重试三次
+ * @type {number}
+ */
+var sendFailTryAgainCount = 0;
+
+function singAccount() {
+}
+singAccount.prototype.beginSend = function (body,from_Account) {
+    var self=this;
+    api.request("im_open_login_svc", "account_import", body, function (err, data) {
+      if (err) {
+        logger.info("timResponseMessageError:%s", err);
+      }
+      sendFailTryAgainCount++;
+      console.log("fromIF==========================="+from_Account)
+      logger.info("timResponseMessageSuccessStatus:%s,ErrorCode:%s,ErrorInfo:%s,count:%s", data.ActionStatus, data.ErrorCode, data.ErrorInfo, sendFailTryAgainCount);
+      if(data.ActionStatus!="Ok"&& data.ErrorInfo!=0&&sendFailTryAgainCount<3){
+         self.beginSend(body,from_Account);
+       }else if(data.ActionStatus=="Ok"&& data.ErrorInfo==0&&(from_Account!=''||from_Account!=undefined)){
+            var addFriBody=self.buildAddBody(body);
+            console.log("调用添加好友方法：-------------------------"+from_Account);
+            new addFriSend().send(addFriBody);
+
+      }
+    })
+  }
+singAccount.prototype.restoreCount = function () {
+    sendFailTryAgainCount = 0;
+  }
+singAccount.prototype.buildAddBody=function (body,from_Account) {
+  var to_Account =  JSON.parse(body)["To_Account"];
+  initAddFriBody.From_Account = from_Account.toString();
+  initAddFriBody.AddFriendItem.To_Account = to_Account.toString();
+  return initAddFriBody;
+}
+singAccount.prototype.send = function (body,from_Account) {
+    this.restoreCount();
+    this.beginSend(body,from_Account);
+  }
+module.exports=singAccount;
+
+
+

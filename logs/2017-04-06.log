@@ -1,0 +1,61 @@
+[2017-04-06 08:25:57.601] [ERROR] record - { Error: connect ECONNREFUSED 127.0.0.1:61613
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1087:14)
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 61613 }
+[2017-04-06 08:28:31.912] [INFO] record - 从master收到的消息：==============={"nickName":"四夕","AddFriendItem":[{"GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕","To_Account":"1149140421735403"}],"From_Account":"1145801336969900","ForceAddFlags":1,"AddType":"Add_Type_Both","avator":"http://wx.qlogo.cn/mmopen/SQd7RF5caa1Vp94IdErAjib97ygWN3Q7icjJdoPdBrItFr7ODTDokJrlNOEUiaLWaSYiagV6PEVkbIzgoAQibniagv5Q/0"},/queue/timAddFriends
+[2017-04-06 08:28:32.322] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:28:32.323] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:1
+[2017-04-06 08:28:32.630] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:28:32.630] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:2
+[2017-04-06 08:28:32.793] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:28:32.793] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:3
+[2017-04-06 08:28:33.291] [INFO] record - 导入用户响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 08:40:29.045] [INFO] record - 从master收到的消息：==============={"nickName":"四夕","AddFriendItem":[{"GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕","To_Account":"1149140421735403"}],"From_Account":"1145801336969900","ForceAddFlags":1,"AddType":"Add_Type_Both","avator":"http://wx.qlogo.cn/mmopen/SQd7RF5caa1Vp94IdErAjib97ygWN3Q7icjJdoPdBrItFr7ODTDokJrlNOEUiaLWaSYiagV6PEVkbIzgoAQibniagv5Q/0"},/queue/timAddFriends
+[2017-04-06 08:40:29.403] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:40:29.404] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:1
+[2017-04-06 08:40:29.718] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:40:29.719] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:2
+[2017-04-06 08:40:29.971] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:40:29.971] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:3
+[2017-04-06 08:40:30.288] [INFO] record - 导入用户响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 08:41:17.735] [INFO] record - 从master收到的消息：==============={"nickName":"四夕","AddFriendItem":[{"GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕","To_Account":"1149140421735403"}],"From_Account":"1145801336969900","ForceAddFlags":1,"AddType":"Add_Type_Both","avator":"http://wx.qlogo.cn/mmopen/SQd7RF5caa1Vp94IdErAjib97ygWN3Q7icjJdoPdBrItFr7ODTDokJrlNOEUiaLWaSYiagV6PEVkbIzgoAQibniagv5Q/0"},/queue/timAddFriends
+[2017-04-06 08:41:18.051] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:41:18.052] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:1
+[2017-04-06 08:41:18.299] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:41:18.300] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:2
+[2017-04-06 08:41:18.477] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:41:18.477] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:3
+[2017-04-06 08:41:18.703] [INFO] record - 导入用户响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 08:52:21.286] [INFO] record - 从master收到的消息：==============={"nickName":"四夕","AddFriendItem":[{"GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕","To_Account":"1149140421735403"}],"From_Account":"1145801336969900","ForceAddFlags":1,"AddType":"Add_Type_Both","avator":"http://wx.qlogo.cn/mmopen/SQd7RF5caa1Vp94IdErAjib97ygWN3Q7icjJdoPdBrItFr7ODTDokJrlNOEUiaLWaSYiagV6PEVkbIzgoAQibniagv5Q/0"},/queue/timAddFriends
+[2017-04-06 08:52:21.658] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:52:21.658] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:1
+[2017-04-06 08:52:21.819] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:52:21.819] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:2
+[2017-04-06 08:52:22.069] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":"[object Object]","AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:52:22.069] [INFO] record - 添加好友响应消息=====SuccessStatus:FAIL,ErrorCode:30001,ErrorInfo:SNS_DECODE_ERR,count:3
+[2017-04-06 08:52:22.349] [INFO] record - 导入用户响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 08:58:48.159] [INFO] record - 从master收到的消息：==============={"nickName":"四夕","AddFriendItem":[{"GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕","To_Account":"1149140421735403"}],"From_Account":"1145801336969900","ForceAddFlags":1,"AddType":"Add_Type_Both","avator":"http://wx.qlogo.cn/mmopen/SQd7RF5caa1Vp94IdErAjib97ygWN3Q7icjJdoPdBrItFr7ODTDokJrlNOEUiaLWaSYiagV6PEVkbIzgoAQibniagv5Q/0"},/queue/timAddFriends
+[2017-04-06 08:58:48.500] [INFO] record - 添加好友消息体：{"From_Account":"1145801336969900","AddFriendItem":[{"To_Account":"1149140421735403","GroupName":"患者","AddSource":"AddSource_Type_Weixin","Remark":"四夕"}],"AddType":"Add_Type_Both","ForceAddFlags":1}
+[2017-04-06 08:58:48.501] [INFO] record - 添加好友响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 08:58:48.824] [INFO] record - 消息发送响应消息=====SuccessStatus:OK,ErrorCode:0,ErrorInfo:,count:1
+[2017-04-06 09:00:08.985] [ERROR] record - TypeError: Cannot read property 'message' of undefined
+    at ChildProcess.<anonymous> (G:\webstormwork\cim-nodejs\app\server\activeMqServer.js:26:34)
+    at emitNone (events.js:86:13)
+    at ChildProcess.emit (events.js:185:7)
+    at finish (internal/child_process.js:711:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-06 09:00:08.991] [INFO] record - 子进程已退出：1
+[2017-04-06 09:00:39.236] [ERROR] record - TypeError: Cannot read property 'message' of undefined
+    at ChildProcess.<anonymous> (G:\webstormwork\cim-nodejs\app\server\activeMqServer.js:26:34)
+    at emitNone (events.js:86:13)
+    at ChildProcess.emit (events.js:185:7)
+    at finish (internal/child_process.js:711:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-06 09:00:39.242] [INFO] record - 子进程已退出：1

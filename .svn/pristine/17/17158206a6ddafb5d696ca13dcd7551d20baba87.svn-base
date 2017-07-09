@@ -1,0 +1,69 @@
+/**
+ * Created by GLGGAG on 2017/3/16.
+ * https://www.npmjs.com/package/stomp-client
+ */
+var Stomp = require('stomp-client');
+var config=require('../../config/activeMQConfig');
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+var addFriSend=require('./timAddFriendsServer');
+var messageSend=require('./timSendMessageServer');
+var singleAccSend=require('./timSingleInputAccountServer');
+var delFriSend=require('./timDelFriendsServer');
+
+
+/**
+ * 监听的队列
+ * @type {string}
+ */
+/**
+ * 消息发送队列
+ * @type {string}
+ */
+var messageSendQueue = '/queue/timSendMessage';
+
+/**
+ * 导入用户
+ * @type {string}
+ */
+var inputAccountQueue='/queue/timRelationManage';
+
+/**
+ * 添加好友
+ * @type {string}
+ */
+var addFriendsQueue='/queue/timAddFriends';
+/**
+ * 删除好友
+ * @type {string}
+ */
+var delFriendsQueue='/queue/timDelFriends';
+
+var client = new Stomp(config);
+client.disconnect(function (err) {
+  console.log("ActiveMqConnetionError======%s,currentModule====%s",err,__filename);
+});
+/**
+ * MQ信息发送过来是直接转发至TIM端，消息体已在MQ发送方组装完毕
+ */
+client.connect(function(sessionId) {
+  client.subscribe(messageSendQueue, function(body, headers) {
+    logger.info("FromActiveMqBodyMessage=====:   %s ,currentTime=====%s",body,new Date());
+   new messageSend().send(body);
+  });
+  client.subscribe(inputAccountQueue, function(body, headers) {
+    logger.info("FromActiveMqBodyMessage=====:  %s ,currentTime=====%s",body,new Date());
+    new singleAccSend().send(body);
+  });
+
+  client.subscribe(addFriendsQueue, function(body, headers) {
+    logger.info("FromActiveMqBodyMessage=====:  %s ,currentTime=====%s",body,new Date());
+    new addFriSend().send(body);
+  });
+
+  client.subscribe(delFriendsQueue, function(body, headers) {
+    logger.info("FromActiveMqBodyMessage=====:  %s ,currentTime=====%s",body,new Date());
+    new delFriSend().send(body);
+  });
+  //client.publish(destination, 'Hello World!');
+});

@@ -1,0 +1,42 @@
+/**
+ * Created by GLGGAG on 2017/3/22.
+ * 批量导入用户工具
+ */
+var beachServer=require('../server/timBeachInputAccountServer');
+var log4js = require("../../config/log.js");
+var logger = log4js.logger;
+
+/**
+ * 当前sql是截止至2017年3月22号
+ * @param data
+ */
+module.exports=function (data) {
+  if(data==''||data==undefined){
+    return;
+  }
+  var arr=new Array();
+  var  length=data.length;
+  var  balance=length%100;
+  for(var i=0;i<length;i++){
+    arr.push(data[i].userno.toString());
+    if(i<length-balance){
+      if (i%100==0){
+        var addCount={
+          "Accounts":arr
+        }
+        var jsonArr= JSON.stringify(addCount);
+        logger.info("添加用户:%s",jsonArr);
+       // new beachServer().sendMes(jsonArr);
+        arr=[];
+      }
+    }
+  }
+  var addCount={
+    "Accounts":arr
+  }
+  var jsonArr= JSON.stringify(addCount);
+  logger.info("添加用户:%s",jsonArr);
+ // new beachServer().sendMes(jsonArr);
+  arr=[];
+}
+
